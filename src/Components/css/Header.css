@@ -1,5 +1,8 @@
 .Head {
   grid-area: header;
   background-color: #282c34;
-  color: white
+  color: white;
+  align-items: center;
+  text-align: center;
+  font-size: 8vw
 }

@@ -1,6 +1,7 @@
 .Nav {
   grid-area: nav;
   background-color: #ffd8b891;
-  align-items: center;
-  justify-content: center;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
 }

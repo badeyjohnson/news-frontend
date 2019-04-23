@@ -1,0 +1,6 @@
+.Login {
+  grid-area: login;
+  background-color: #fd92fd91;
+  align-items: center;
+  text-align: center;
+}

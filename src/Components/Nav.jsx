@@ -1,10 +1,17 @@
-import React from 'react';
-import './css/Nav.css'
+import React from "react";
+import { Link } from "@reach/router";
+import "./css/Nav.css";
 
-function Nav() {
+function Nav({ topics }) {
   return (
-    <nav className='Nav'>
-      Navigation bar
+    <nav className="Nav">
+      {topics.length
+        ? topics.map(topic => (
+            <Link to={`/${topic.slug}`} key={topic.slug}>
+              {topic.slug}
+            </Link>
+          ))
+        : "null"}
     </nav>
   );
 }

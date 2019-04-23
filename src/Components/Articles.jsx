@@ -4,7 +4,7 @@ import './css/Articles.css'
 function Articles() {
   return (
     <div className="Articles">
-      Articles
+      This is an article
     </div>
   );
 }

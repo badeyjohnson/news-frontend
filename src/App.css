@@ -3,7 +3,7 @@
   width: 100vw;
   display: grid;
   grid-template-areas:
-    "header header header"
+    "header header login"
     "nav articles articles"
     ". foot .";
   grid-template-columns: 0.5fr 2fr 0.5fr;
