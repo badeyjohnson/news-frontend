@@ -5,6 +5,7 @@ import Nav from "./Components/Nav";
 import Articles from "./Components/Articles";
 import Footer from "./Components/Footer";
 import Login from "./Components/Login";
+import NotFound from "./Components/NotFound";
 import * as api from "./api";
 import "./App.css";
 
@@ -21,23 +22,26 @@ class App extends Component {
         <Login />
         <Nav topics={topics} />
         <Router className="Articles">
-          <Articles path="/"/>
-          <Articles path="/:topic"/>
+          <Articles path="/" />
+          <Articles path="/:topic" />
+          <Articles path="/articles/:article_id" />
+          <NotFound default />
         </Router>
         <Footer />
       </div>
     );
   }
 
-  componentDidMount = async () => {
-    const topics = await this.fetchTopics();
+  componentDidMount = () => {
+    this.fetchTopics();
+  };
+
+  fetchTopics = async () => {
+    const topics = await api.getAll("topics");
     this.setState({
       topics
     });
   };
-
-  fetchTopics = () => api.getAll("topics");
-
 }
 
 export default App;
