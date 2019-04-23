@@ -1,0 +1,6 @@
+.Articles {
+  grid-area: articles;
+  background-color: #a9c6ff;
+  align-items: center;
+  justify-content: center;
+}
