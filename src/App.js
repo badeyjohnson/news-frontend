@@ -15,15 +15,15 @@ class App extends Component {
 
   render() {
     const { topics } = this.state;
-    console.log(topics);
     return (
       <div className="App">
         <Header />
         <Login />
-        <Router className="Nav">
-          <Nav path="/" topics={topics} />
+        <Nav topics={topics} />
+        <Router className="Articles">
+          <Articles path="/"/>
+          <Articles path="/:topic"/>
         </Router>
-          <Articles />
         <Footer />
       </div>
     );
@@ -37,6 +37,7 @@ class App extends Component {
   };
 
   fetchTopics = () => api.getAll("topics");
+
 }
 
 export default App;
