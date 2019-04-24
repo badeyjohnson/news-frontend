@@ -15,12 +15,11 @@ class Articles extends Component {
     return (
       <div>
         {articles.length === 1 ? (
-          <div className="article">
+          <div className="Article">
             <h1>{articles[0].title}</h1>
-            <h2>by {articles[0].author}</h2>
             <article>{articles[0].body}</article>
-            <p>{articles[0].created_at}</p>
-            <Comments articleId={article_id}/>
+            <p>posted by {articles[0].author} at {Date(articles[0].created_at)}</p>
+            <Comments articleId={article_id} className="Comments"/>
           </div>
         ) : (
           articles.map(article => (

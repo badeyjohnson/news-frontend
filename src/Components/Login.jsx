@@ -4,7 +4,7 @@ import './css/Login.css'
 function Login() {
   return (
     <div className="Login">
-      Login here
+      
     </div>
   );
 }

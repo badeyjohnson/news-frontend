@@ -11,11 +11,12 @@ import "./App.css";
 
 class App extends Component {
   state = {
-    topics: []
+    topics: [],
+    articleId: '',
   };
 
   render() {
-    const { topics } = this.state;
+    const { topics, articleId } = this.state;
     return (
       <div className="App">
         <Header />
@@ -27,6 +28,7 @@ class App extends Component {
           <Articles path="/articles/:article_id" />
           <NotFound default />
         </Router>
+        <Articles className="Article" articleId={articleId} />
         <Footer />
       </div>
     );
@@ -42,6 +44,12 @@ class App extends Component {
       topics
     });
   };
+
+  updateArticleId = (id) => {
+    this.setState({
+      articleId: id,
+    })
+  }
 }
 
 export default App;
