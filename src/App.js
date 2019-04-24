@@ -23,7 +23,7 @@ class App extends Component {
         <Login />
         <Nav topics={topics} />
         <Router className="Articles">
-          <Articles path="/" />
+          <Articles path="/" getAll={true}/>
           <Articles path="/:topic" />
           <Articles path="/articles/:article_id" />
           <NotFound default />

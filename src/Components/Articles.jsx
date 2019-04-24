@@ -31,8 +31,9 @@ class Articles extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { topic } = this.props;
+    const { topic, getAll } = this.props;
     topic && prevProps.topic !== topic && this.fetchArticles();
+    getAll && prevProps.getAll !== getAll && this.fetchArticles();
   }
 
   fetchArticles = async () => {
