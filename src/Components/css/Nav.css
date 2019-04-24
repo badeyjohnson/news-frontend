@@ -2,6 +2,7 @@
   grid-area: nav;
   background-color: rgb(215, 216, 219);
   text-align: center;
+  height: 80vh;
   display: flex;
   flex-direction: column;
 }

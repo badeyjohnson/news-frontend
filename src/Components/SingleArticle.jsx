@@ -1,7 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "@reach/router";
 import Comments from "./Comments";
-import "./css/Articles.css";
 import * as api from "../api";
 
 class SingleArticle extends Component {
@@ -13,15 +11,21 @@ class SingleArticle extends Component {
     const { article } = this.state;
     const { article_id } = this.props;
     return (
-      <div>
-        {article.length === 1 && (
+      <div >
+        {article.length === 1 ? (
           <div className="Article">
-            <h1>{article[0].title}</h1>
-            <article>{article[0].body}</article>
-            <p>posted by {article[0].author} at {Date(article[0].created_at)}</p>
-            <Comments articleId={article_id} className="Comments"/>
+            <div className="theArticle">
+              <h1>{article[0].title}</h1>
+              <article>{article[0].body}</article>
+              <p>
+                posted by {article[0].author} at {Date(article[0].created_at)}
+              </p>
+            </div>
+            <div className="Comments">
+            <Comments articleId={article_id} />
+            </div>
           </div>
-        )}
+        ) : <p> Loading... </p>}
       </div>
     );
   }

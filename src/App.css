@@ -10,7 +10,7 @@ body {
     "header header header"
     "nav articles article"
     "foot foot foot";
-  grid-template-columns: 0.5fr 3fr 3fr;
-  grid-template-rows: 10vw 10fr 0.5fr;
+  grid-template-columns: 0.5fr 2fr 6fr;
+  grid-template-rows: 1fr 8fr 1fr;
   background-color: rgb(141, 141, 141);
 }

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Fade from 'react-reveal/Fade';
 import * as api from "../api";
-import './css/Comments.css'
 
 class Comments extends Component {
   state = {
@@ -20,7 +19,7 @@ class Comments extends Component {
                   <td>{comment.body}</td>
                 </tr>
                 <tr >
-                  <td style={{"textAlign": "right", "font-weight": "700"}}>
+                  <td style={{"textAlign": "right", "fontWeight": "700"}}>
                     comment posted by {comment.author} at {Date(comment.created_at)}
                   </td> 
                 </tr>
