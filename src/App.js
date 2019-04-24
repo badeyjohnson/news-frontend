@@ -13,26 +13,29 @@ import "./App.css";
 class App extends Component {
   state = {
     topics: [],
+    user: null,
+    loginFailed: false,
   };
 
   render() {
-    const { topics } = this.state;
+    const { topics, user } = this.state;
     return (
-      <div className="App">
-        <Header />
-        <Login />
-        <Nav topics={topics} />
-        <Router className="Articles">
-          <Articles path="/" getAll={true}/>
-          <Articles path="/:topic" />
-          <Articles path="/articles/:article_id" />
-          <NotFound default />
-        </Router>
-        <Router className="Article" >
-          <SingleArticle path="/articles/:article_id" />
-        </Router>
-        <Footer />
-      </div>
+      <Login user={user} login={this.login}>
+        <div className="App">
+          <Header />
+          <Nav topics={topics} />
+          <Router className="Articles">
+            <Articles path="/" getAll={true} />
+            <Articles path="/:topic" />
+            <Articles path="/articles/:article_id" />
+            <NotFound default />
+          </Router>
+          <Router className="Article">
+            <SingleArticle path="/articles/:article_id" />
+          </Router>
+          <Footer />
+        </div>
+      </Login>
     );
   }
 
@@ -47,6 +50,9 @@ class App extends Component {
     });
   };
 
+  login = username => {
+    api.getUser(username).then(user => this.setState({user}))
+    }
 }
 
 export default App;

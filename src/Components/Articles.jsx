@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import Comments from "./Comments";
-import SingleArticle from "./SingleArticle";
 import "./css/Articles.css";
 import * as api from "../api";
 
