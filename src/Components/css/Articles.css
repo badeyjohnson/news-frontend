@@ -1,24 +1,26 @@
 .Articles {
   grid-area: articles;
-  background-color: #a9c6ff;
+  background-color: rgb(215, 216, 219);
   justify-content: center;
-  border: 2px solid blue;
+  border: 1px solid rgb(141, 141, 141);
   align-items: center;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
+  border-radius: 1em;
 }
 
 .Article {
   grid-area: article;
-  background-color: #a9c6ff;
+  background-color: rgb(215, 216, 219);
   justify-content: center;
-  border: 2px solid rgb(255, 0, 76);
+  border: 1px solid rgb(141, 141, 141);
   align-items: center;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
+  border-radius: 1em;
 }
 

@@ -1,6 +1,6 @@
 .Nav {
   grid-area: nav;
-  background-color: #ffd8b891;
+  background-color: rgb(215, 216, 219);
   text-align: center;
   display: flex;
   flex-direction: column;

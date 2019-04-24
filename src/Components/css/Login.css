@@ -1,6 +1,11 @@
 .Login {
-  grid-area: login;
-  background-color: #fd92fd91;
+  background-color: #1a0e529d;
+  width: 30vw;
+  height: 30vw;
+  margin: 10vh;
+  grid-area: articles;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  text-align: center;
 }

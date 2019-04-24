@@ -20,9 +20,9 @@ class App extends Component {
   render() {
     const { topics, user } = this.state;
     return (
-      <Login user={user} login={this.login}>
         <div className="App">
           <Header />
+      <Login user={user} login={this.login}>
           <Nav topics={topics} />
           <Router className="Articles">
             <Articles path="/" getAll={true} />
@@ -34,8 +34,8 @@ class App extends Component {
             <SingleArticle path="/articles/:article_id" />
           </Router>
           <Footer />
-        </div>
       </Login>
+        </div>
     );
   }
 

@@ -9,7 +9,8 @@ body {
   grid-template-areas:
     "header header header"
     "nav articles article"
-    ". foot login";
+    "foot foot foot";
   grid-template-columns: 0.5fr 3fr 3fr;
-  grid-template-rows: 1.5fr 10fr 1.5fr;
+  grid-template-rows: 10vw 10fr 0.5fr;
+  background-color: rgb(141, 141, 141);
 }

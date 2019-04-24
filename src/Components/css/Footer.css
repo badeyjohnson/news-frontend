@@ -1,6 +1,8 @@
 .Foot {
   grid-area: foot;
-  background-color: #ffd8b891;
+  background-color: #282c34;
+  color: rgb(182, 182, 182);
   align-items: center;
   text-align: center;
+  margin-top: 0.5vh
 }
