@@ -10,8 +10,6 @@ class SingleArticle extends Component {
 
   render() {
     const { article } = this.state;
-    const { article_id } = this.props;
-    console.log(article)
     return (
       <div >
           <div className="Article">
@@ -21,10 +19,10 @@ class SingleArticle extends Component {
               <p style={{"fontWeight": "700"}}>
                 posted by {article.author} at {Date(article.created_at)}
               </p>
-              <Votes id={article_id} votes={article.votes} location={"article"}/>
+              <Votes id={article.article_id} votes={article.votes} location={"article"}/>
             </div>
             <div className="Comments">
-            <Comments articleId={article_id}/>
+            <Comments articleId={article.article_id}/>
             </div>
           </div>
       </div>
@@ -36,12 +34,13 @@ class SingleArticle extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { article_id } = this.props;
-    article_id && prevProps.article_id !== article_id && this.fetchOneArticle();
+    const { article_id, firstArticleId } = this.props;
+    firstArticleId && prevProps.firstArticleId !== firstArticleId && this.fetchOneArticle(firstArticleId)
+    article_id && prevProps.article_id !== article_id && this.fetchOneArticle(article_id);
   }
 
-  fetchOneArticle = async () => {
-    const article = await api.getSingle(this.props.article_id);
+  fetchOneArticle = async (id) => {
+    const article = await api.getSingle(id);
     this.setState({
       article
     });

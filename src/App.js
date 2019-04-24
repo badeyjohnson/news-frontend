@@ -15,23 +15,25 @@ class App extends Component {
     topics: [],
     user: null,
     loginFailed: false,
+    firstArticleId: 6,
   };
 
   render() {
-    const { topics, user } = this.state;
+    const { topics, user, firstArticleId } = this.state;
     return (
         <div className="App">
           <Header />
       {/* <Login user={user} login={this.login}> */}
           <Nav topics={topics} />
           <Router className="Articles">
-            <Articles path="/" getAll={true} />
-            <Articles path="/:topic" />
-            <Articles path="/articles/:article_id" />
+            <Articles path="/" getAll={true} firstArticle={this.firstArticle}/>
+            <Articles path="/:topic" firstArticle={this.firstArticle}/>
+            <Articles path="/articles/:article_id" firstArticle={this.firstArticle}/>
             <NotFound default />
           </Router>
           <Router className="Article">
-            <SingleArticle path="/articles/:article_id" />
+            <SingleArticle path="/articles/:article_id" firstArticleId={firstArticleId}/>
+            <SingleArticle path="/*" firstArticleId={firstArticleId}/>
           </Router>
           <Footer />
       {/* </Login> */}
@@ -49,6 +51,12 @@ class App extends Component {
       topics
     });
   };
+
+  firstArticle = firstArticleId => {
+    this.setState({
+      firstArticleId
+    })
+  }
 
   login = username => {
     api.getUser(username).then(user => this.setState({user}))
