@@ -22,6 +22,10 @@ class Votes extends Component {
     );
   }
 
+  componentDidUpdate(prevProps) {
+    prevProps.id !== this.props.id && this.setState({voteChange: 0})
+  }
+
   vote = voteChange => {
     const { id, location } = this.props;
     this.setState(state => ({

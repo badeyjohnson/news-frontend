@@ -10,6 +10,7 @@ class SingleArticle extends Component {
 
   render() {
     const { article } = this.state;
+    console.log(article)
     return (
       <div >
           <div className="Article">
@@ -19,10 +20,10 @@ class SingleArticle extends Component {
               <p style={{"fontWeight": "700"}}>
                 posted by {article.author} at {Date(article.created_at)}
               </p>
-              <Votes id={article.article_id} votes={article.votes} location={"article"}/>
+              <Votes id={article.article_id} votes={article.votes || 0} location={"article"}/>
             </div>
             <div className="Comments">
-            <Comments articleId={article.article_id}/>
+            <Comments articleId={article.article_id || 0}/>
             </div>
           </div>
       </div>
@@ -30,7 +31,7 @@ class SingleArticle extends Component {
   }
 
   componentDidMount() {
-    this.fetchOneArticle();
+    this.fetchOneArticle(this.props.firstArticleId);
   }
 
   componentDidUpdate(prevProps) {

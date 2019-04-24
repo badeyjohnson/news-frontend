@@ -12,14 +12,14 @@ class Articles extends Component {
     const { articles } = this.state;
     return (
       <div>
-          {articles.map(article => (
-            <div key={`${article.article_id}`}>
-              <Link to={`/articles/${article.article_id}`} className="Link">
-                {article.title}
-              </Link>
-            </div>
-          ))
-        }
+        {articles.map(article => (
+          <div key={`${article.article_id}`}>
+            <Link to={`/articles/${article.article_id}`} className="Link">
+              {article.title}
+            </Link>
+          </div>
+        ))}
+        <button onClick={() => this.sortArticles()}>sort</button>
       </div>
     );
   }
@@ -30,16 +30,23 @@ class Articles extends Component {
 
   componentDidUpdate(prevProps) {
     const { topic, getAll } = this.props;
-    topic && prevProps.topic !== topic && this.fetchArticles()
+    topic && prevProps.topic !== topic && this.fetchArticles();
     getAll && prevProps.getAll !== getAll && this.fetchArticles();
-
   }
 
   fetchArticles = async () => {
     const articles = await api.getAll("articles", this.props.topic);
-    this.props.firstArticle(articles[0].article_id)
+    this.sortArticles();
+    this.props.firstArticle(articles[0].article_id);
     this.setState({
       articles
+    });
+  };
+
+  sortArticles = query => {
+    const { articles } = this.state;
+    this.setState({
+      articles: articles.concat().sort()
     });
   };
 }
