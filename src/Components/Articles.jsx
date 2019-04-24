@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
 import Comments from "./Comments";
+import SingleArticle from "./SingleArticle";
 import "./css/Articles.css";
 import * as api from "../api";
 
@@ -11,25 +12,16 @@ class Articles extends Component {
 
   render() {
     const { articles } = this.state;
-    const { article_id } = this.props;
     return (
       <div>
-        {articles.length === 1 ? (
-          <div className="Article">
-            <h1>{articles[0].title}</h1>
-            <article>{articles[0].body}</article>
-            <p>posted by {articles[0].author} at {Date(articles[0].created_at)}</p>
-            <Comments articleId={article_id} className="Comments"/>
-          </div>
-        ) : (
-          articles.map(article => (
+          {articles.map(article => (
             <div key={`${article.article_id}`}>
               <Link to={`/articles/${article.article_id}`}>
                 {article.title}
               </Link>
             </div>
           ))
-        )}
+        }
       </div>
     );
   }
@@ -39,21 +31,12 @@ class Articles extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    const { article_id, topic } = this.props;
+    const { topic } = this.props;
     topic && prevProps.topic !== topic && this.fetchArticles();
-    article_id && prevProps.article_id !== article_id && this.fetchOneArticle();
-    !article_id && !topic && this.fetchArticles();
   }
 
   fetchArticles = async () => {
     const articles = await api.getAll("articles", this.props.topic);
-    this.setState({
-      articles
-    });
-  };
-
-  fetchOneArticle = async () => {
-    const articles = await api.getSingle(this.props.article_id);
     this.setState({
       articles
     });

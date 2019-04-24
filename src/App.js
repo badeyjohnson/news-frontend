@@ -3,6 +3,7 @@ import { Router } from "@reach/router";
 import Header from "./Components/Header";
 import Nav from "./Components/Nav";
 import Articles from "./Components/Articles";
+import SingleArticle from "./Components/SingleArticle";
 import Footer from "./Components/Footer";
 import Login from "./Components/Login";
 import NotFound from "./Components/NotFound";
@@ -12,11 +13,10 @@ import "./App.css";
 class App extends Component {
   state = {
     topics: [],
-    articleId: '',
   };
 
   render() {
-    const { topics, articleId } = this.state;
+    const { topics } = this.state;
     return (
       <div className="App">
         <Header />
@@ -28,7 +28,9 @@ class App extends Component {
           <Articles path="/articles/:article_id" />
           <NotFound default />
         </Router>
-        <Articles className="Article" articleId={articleId} />
+        <Router className="Article" >
+          <SingleArticle path="/articles/:article_id" />
+        </Router>
         <Footer />
       </div>
     );
@@ -45,11 +47,6 @@ class App extends Component {
     });
   };
 
-  updateArticleId = (id) => {
-    this.setState({
-      articleId: id,
-    })
-  }
 }
 
 export default App;

@@ -10,4 +10,15 @@
   overflow-y: scroll;
 }
 
+.Article {
+  grid-area: article;
+  background-color: #a9c6ff;
+  justify-content: center;
+  border: 2px solid rgb(255, 0, 76);
+  align-items: center;
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: scroll;
+}
 
