@@ -10,6 +10,7 @@ class Articles extends Component {
 
   render() {
     const { articles } = this.state;
+    console.log(articles)
     return (
       <div>
         {articles.map(article => (
@@ -19,7 +20,9 @@ class Articles extends Component {
             </Link>
           </div>
         ))}
-        <button onClick={() => this.sortArticles()}>sort</button>
+        <button onClick={() => this.sortArticles("votes")}>sort by votes</button>
+        <button onClick={() => this.sortArticles("comment_count")}>sort by num comments</button>
+        <button onClick={() => this.sortArticles("created_at")}>sort by date created</button>
       </div>
     );
   }
@@ -46,7 +49,7 @@ class Articles extends Component {
   sortArticles = query => {
     const { articles } = this.state;
     this.setState({
-      articles: articles.concat().sort()
+      articles: articles.concat().sort((a, b) => b[query] - a[query])
     });
   };
 }

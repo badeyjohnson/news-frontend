@@ -10,7 +10,6 @@ class SingleArticle extends Component {
 
   render() {
     const { article } = this.state;
-    console.log(article)
     return (
       <div >
           <div className="Article">
