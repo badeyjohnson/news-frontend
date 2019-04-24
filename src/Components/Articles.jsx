@@ -14,7 +14,7 @@ class Articles extends Component {
       <div>
           {articles.map(article => (
             <div key={`${article.article_id}`}>
-              <Link to={`/articles/${article.article_id}`}>
+              <Link to={`/articles/${article.article_id}`} className="Link">
                 {article.title}
               </Link>
             </div>

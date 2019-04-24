@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import Fade from 'react-reveal/Fade';
+import Fade from "react-reveal/Fade";
 import * as api from "../api";
+import Votes from "./Votes";
 
 class Comments extends Component {
   state = {
@@ -12,20 +13,26 @@ class Comments extends Component {
     return (
       <div className="Comments">
         <table>
-            {comments.map(comment => (
-              <tbody key={comment.comment_id}>
-                <Fade bottom>
-                <tr >
+          {comments.map(comment => (
+            <tbody key={comment.comment_id}>
+              <Fade bottom opposite>
+                <tr>
                   <td>{comment.body}</td>
                 </tr>
-                <tr >
-                  <td style={{"textAlign": "right", "fontWeight": "700"}}>
-                    comment posted by {comment.author} at {Date(comment.created_at)}
-                  </td> 
+                <tr>
+                  <td style={{ textAlign: "right", fontWeight: "700" }}>
+                    comment posted by {comment.author} at{" "}
+                    {Date(comment.created_at)}
+                  </td>
                 </tr>
-                </Fade>
-              </tbody>
-            ))}
+                <tr>
+                  <td>
+                    <Votes id={comment.comment_id} votes={comment.votes} location={"comment"}/>
+                  </td>
+                </tr>
+              </Fade>
+            </tbody>
+          ))}
         </table>
       </div>
     );
@@ -33,6 +40,10 @@ class Comments extends Component {
 
   componentDidMount() {
     this.fetchComments();
+  }
+
+  componentDidUpdate(prevProps) {
+    prevProps.articleId !== this.props.articleId && this.fetchComments();
   }
 
   fetchComments = async () => {

@@ -1,31 +1,32 @@
 import React, { Component } from "react";
 import Comments from "./Comments";
 import * as api from "../api";
+import Votes from "./Votes";
 
 class SingleArticle extends Component {
   state = {
-    article: []
+    article: {}
   };
 
   render() {
     const { article } = this.state;
     const { article_id } = this.props;
+    console.log(article)
     return (
       <div >
-        {article.length === 1 ? (
           <div className="Article">
             <div className="theArticle">
-              <h1>{article[0].title}</h1>
-              <article>{article[0].body}</article>
-              <p>
-                posted by {article[0].author} at {Date(article[0].created_at)}
+              <h1>{article.title}</h1>
+              <article>{article.body}</article>
+              <p style={{"fontWeight": "700"}}>
+                posted by {article.author} at {Date(article.created_at)}
               </p>
+              <Votes id={article_id} votes={article.votes} location={"article"}/>
             </div>
             <div className="Comments">
-            <Comments articleId={article_id} />
+            <Comments articleId={article_id}/>
             </div>
           </div>
-        ) : <p> Loading... </p>}
       </div>
     );
   }

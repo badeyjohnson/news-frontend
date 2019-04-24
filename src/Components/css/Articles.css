@@ -1,15 +1,20 @@
 .Articles {
   grid-area: articles;
-  background-color: rgb(109, 109, 109);
+  background-color:rgb(215, 216, 219);
   justify-content: center;
-  border: 1px solid rgb(141, 141, 141);
   align-items: center;
+  margin: 1vh;
   height: 80vh;
   text-align: center;
   display: flex;
   flex-wrap: wrap;
   overflow-y: scroll;
   border-radius: 1em;
+}
+
+.Link {
+  text-decoration: none;
+  color: blue
 }
 
 .Article {
@@ -24,8 +29,8 @@
 .theArticle {
   grid-area: thearticle;
   justify-content: center;
-  height: 80vh;
-  width: 80vh;
+  height: 79vh;
+  width: 45vw;
   align-content: center;
   flex-wrap: wrap;
 }
@@ -33,10 +38,9 @@
 .Comments {
   grid-area: comments;
   display: flex;
-  height: 80vh;
+  height: 79vh;
   overflow-y: scroll;
-  justify-content: center;
-  align-items: center;
+  margin: 0 0 0 0.5vw;
 }
 
 
