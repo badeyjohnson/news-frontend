@@ -1,8 +1,11 @@
-import React from 'react';
+import React from "react";
 
-const componentName = ({ logout }) => {
+const componentName = ({ logout, user }) => {
   return (
-    <button onClick={() => logout()}>Logout</button>
+    <div>
+      <button onClick={() => logout()}>Logout</button>
+      <p>{user}</p>
+    </div>
   );
 };
 

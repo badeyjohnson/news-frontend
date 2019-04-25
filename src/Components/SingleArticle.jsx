@@ -11,6 +11,8 @@ class SingleArticle extends Component {
 
   render() {
     const { article } = this.state;
+    const { user } = this.props;
+    console.log(user)
     return (
       <div>
         <div className="Article">
@@ -27,7 +29,7 @@ class SingleArticle extends Component {
             />
           </div>
           <div className="Comments">
-            <Comments articleId={article.article_id || 0} />
+            <Comments articleId={article.article_id || 0} user={user}/>
           </div>
         </div>
       </div>
@@ -57,7 +59,8 @@ class SingleArticle extends Component {
 }
 
 SingleArticle.propTypes = {
-  firstArticleId: PT.number.isRequired
+  firstArticleId: PT.number.isRequired,
+  user: PT.string
 };
 
 export default SingleArticle;

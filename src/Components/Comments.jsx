@@ -6,13 +6,17 @@ import * as api from "../api";
 
 class Comments extends Component {
   state = {
-    comments: []
+    comments: [],
+    newComment: '',
   };
 
   render() {
-    const { comments } = this.state;
+    const { comments, newComment } = this.state;
     return (
       <div className="Comments">
+              <form onSubmit={this.postComment}>
+                <input value={newComment} onChange={this.handleChange} id="newComment" required/>
+                <button>post</button>
         <table>
           {comments.map(comment => (
             <tbody key={comment.comment_id}>
@@ -22,7 +26,7 @@ class Comments extends Component {
                 </tr>
                 <tr>
                   <td style={{ textAlign: "right", fontWeight: "700" }}>
-                    comment posted by {comment.author} at{" "}
+                    comment posted by {comment.author || comment.created_by} at{" "}
                     {Date(comment.created_at)}
                   </td>
                 </tr>
@@ -32,13 +36,14 @@ class Comments extends Component {
                       id={comment.comment_id}
                       votes={comment.votes}
                       location={"comment"}
-                    />
+                      />
                   </td>
                 </tr>
               </Fade>
             </tbody>
           ))}
         </table>
+          </form>
       </div>
     );
   }
@@ -55,10 +60,34 @@ class Comments extends Component {
       comments
     });
   };
+
+  postComment = e => {
+    e.preventDefault();
+    const { articleId, user } = this.props
+    const newCommentObj = { username: user, body: this.state.newComment}
+    api.postComment(articleId, newCommentObj).then(postedComment => {
+      this.setState(state => ({
+        comments: postedComment.concat(state.comments),
+        newComment: ''
+      }));
+    })
+  }
+
+  handleChange = e => {
+    const { id, value } = e.target;
+    this.setState({
+      [id]: value
+    });
+  };
+
+  deleteComment = () => {
+
+  }
 }
 
 Comments.propTypes = {
-  articleId: PT.number.isRequired
+  articleId: PT.number.isRequired,
+  user: PT.string
 }
 
 export default Comments;
