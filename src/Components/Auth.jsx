@@ -13,7 +13,7 @@ class Auth extends Component {
       children
     ) : (
       <form onSubmit={this.handleSubmit} className="Login">
-        <input value={username} onChange={this.handleChange} id="username" />
+        <input value={username} onChange={this.handleChange} id="username" required/>
         <button type="submit">Login</button>
       </form>
     );
@@ -34,7 +34,8 @@ class Auth extends Component {
 
 Auth.propTypes = {
   user: PT.string,
-  children: PT.arrayOf(PT.element).isRequired
+  children: PT.arrayOf(PT.element).isRequired,
+  login: PT.func.isRequired
 };
 
 export default Auth;

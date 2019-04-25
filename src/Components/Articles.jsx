@@ -43,13 +43,16 @@ class Articles extends Component {
     getAll && prevProps.getAll !== getAll && this.fetchArticles();
   }
 
-  fetchArticles = async () => {
+  fetchArticles = () => {
     const { topic, firstArticle } = this.props;
-    const articles = await api.getAll("articles", topic);
-    firstArticle(articles[0].article_id);
-    this.setState({
-      articles
-    });
+    api.getAll("articles", topic).then(articles => {
+      firstArticle(articles[0].article_id);
+      this.setState({
+        articles
+      })
+    }).catch(() => {
+      const { navigate } = this.props
+      navigate("/404", { replace: true, state: {msg : `couldn't find articles`} })})
   };
 
   sortArticles = query => {
