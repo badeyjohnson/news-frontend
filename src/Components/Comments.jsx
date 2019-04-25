@@ -20,7 +20,6 @@ class Comments extends Component {
             value={newComment}
             onChange={this.handleChange}
             id="newComment"
-            required
           />
           <button>post</button>
           <table>
@@ -74,13 +73,16 @@ class Comments extends Component {
   postComment = e => {
     e.preventDefault();
     const { articleId, user } = this.props;
-    const newCommentObj = { username: user, body: this.state.newComment };
-    api.postComment(articleId, newCommentObj).then(postedComment => {
-      this.setState(state => ({
-        comments: postedComment.concat(state.comments),
-        newComment: ""
-      }));
-    });
+    const { newComment } = this.state
+    if (newComment) {
+      const newCommentObj = { username: user, body: newComment };
+      api.postComment(articleId, newCommentObj).then(postedComment => {
+        this.setState(state => ({
+          comments: postedComment.concat(state.comments),
+          newComment: ""
+        }));
+      });
+    }
   };
 
   handleChange = e => {
