@@ -23,7 +23,7 @@
   height: 80vh;
   margin: 0.5vh;
   grid-template-areas:
-    "thearticlehead comments"
+    "thearticlehead thearticlehead"
     "thearticle comments";
   grid-template-columns: 45vw 23vw;
   grid-template-rows: 1fr 9fr
@@ -33,25 +33,23 @@
   grid-area: thearticle;
   display: flex;
   align-content: flex-start;
-  justify-content: flex-start;
-  width: 45vw;
   flex-wrap: wrap;
   overflow-y: scroll;
 }
 
-.theArticlehead {
+.theArticleHead {
   grid-area: thearticlehead;
+  width: 100%;
+  display: flex;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 10%;
 }
 
 .Comments {
   grid-area: comments;
+  display: grid;
   display: flex;
-  height: 79vh;
+  flex-direction: column;
   overflow-y: scroll;
   margin: 0 0 0 0.5vw;
 }
-
-

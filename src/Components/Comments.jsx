@@ -16,12 +16,15 @@ class Comments extends Component {
     return (
       <div className="Comments">
         <form onSubmit={this.postComment}>
+        <h2>post a new comment</h2>
           <input
             value={newComment}
             onChange={this.handleChange}
             id="newComment"
           />
           <button>post</button>
+          </form>
+          <div >
           <table>
             {comments.map(comment => (
               <tbody key={comment.comment_id}>
@@ -52,7 +55,7 @@ class Comments extends Component {
               </tbody>
             ))}
           </table>
-        </form>
+          </div>
       </div>
     );
   }

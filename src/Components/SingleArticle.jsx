@@ -28,9 +28,7 @@ class SingleArticle extends Component {
               location={"article"}
             />
           </div>
-          <div className="Comments">
-            <Comments articleId={article.article_id || 0} user={user}/>
-          </div>
+            <Comments articleId={article.article_id || 0} user={user} className="Comments"/>
         </div>
       </div>
     );
