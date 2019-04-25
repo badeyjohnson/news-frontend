@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { Link } from "@reach/router";
-import "./css/Articles.css";
+import PT from "prop-types";
 import * as api from "../api";
+import "./css/Articles.css";
 
 class Articles extends Component {
   state = {
@@ -10,7 +11,6 @@ class Articles extends Component {
 
   render() {
     const { articles } = this.state;
-    console.log(articles)
     return (
       <div>
         {articles.map(article => (
@@ -20,9 +20,15 @@ class Articles extends Component {
             </Link>
           </div>
         ))}
-        <button onClick={() => this.sortArticles("votes")}>sort by votes</button>
-        <button onClick={() => this.sortArticles("comment_count")}>sort by num comments</button>
-        <button onClick={() => this.sortArticles("created_at")}>sort by date created</button>
+        <button onClick={() => this.sortArticles("votes")}>
+          sort by votes
+        </button>
+        <button onClick={() => this.sortArticles("comment_count")}>
+          sort by num comments
+        </button>
+        <button onClick={() => this.sortArticles("created_at")}>
+          sort by date created
+        </button>
       </div>
     );
   }
@@ -38,9 +44,9 @@ class Articles extends Component {
   }
 
   fetchArticles = async () => {
-    const articles = await api.getAll("articles", this.props.topic);
-    this.sortArticles();
-    this.props.firstArticle(articles[0].article_id);
+    const { topic, firstArticle } = this.props;
+    const articles = await api.getAll("articles", topic);
+    firstArticle(articles[0].article_id);
     this.setState({
       articles
     });
@@ -53,5 +59,11 @@ class Articles extends Component {
     });
   };
 }
+
+Articles.propTypes = {
+  topic: PT.arrayOf(PT.string),
+  getAll: PT.bool,
+  firstArticle: PT.func.isRequired
+};
 
 export default Articles;

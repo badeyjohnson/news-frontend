@@ -7,7 +7,7 @@ body {
   width: 100vw;
   display: grid;
   grid-template-areas:
-    "header header header"
+    "logout header header"
     "nav articles article"
     "foot foot foot";
   grid-template-columns: 0.5fr 2fr 6fr;

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PT from "prop-types";
 import * as api from "../api";
 
 class Votes extends Component {
@@ -34,5 +35,11 @@ class Votes extends Component {
     api.vote(location, voteChange, id);
   };
 }
+
+Votes.propTypes = {
+  votes: PT.number.isRequired,
+  id: PT.number.isRequired,
+  location: PT.string.isRequired
+};
 
 export default Votes;

@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Fade from "react-reveal/Fade";
-import * as api from "../api";
+import PT from 'prop-types';
 import Votes from "./Votes";
+import * as api from "../api";
 
 class Comments extends Component {
   state = {
@@ -27,7 +28,11 @@ class Comments extends Component {
                 </tr>
                 <tr>
                   <td>
-                    <Votes id={comment.comment_id} votes={comment.votes} location={"comment"}/>
+                    <Votes
+                      id={comment.comment_id}
+                      votes={comment.votes}
+                      location={"comment"}
+                    />
                   </td>
                 </tr>
               </Fade>
@@ -38,13 +43,11 @@ class Comments extends Component {
     );
   }
 
-  componentDidMount() {
-    this.fetchComments();
-  }
+  componentDidMount = () => this.fetchComments();
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate = prevProps => {
     prevProps.articleId !== this.props.articleId && this.fetchComments();
-  }
+  };
 
   fetchComments = async () => {
     const comments = await api.getComments(this.props.articleId);
@@ -52,6 +55,10 @@ class Comments extends Component {
       comments
     });
   };
+}
+
+Comments.propTypes = {
+  articleId: PT.number.isRequired
 }
 
 export default Comments;
