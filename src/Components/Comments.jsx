@@ -1,49 +1,59 @@
 import React, { Component } from "react";
 import Fade from "react-reveal/Fade";
-import PT from 'prop-types';
+import PT from "prop-types";
 import Votes from "./Votes";
 import * as api from "../api";
 
 class Comments extends Component {
   state = {
     comments: [],
-    newComment: '',
+    newComment: ""
   };
 
   render() {
     const { comments, newComment } = this.state;
+    const { user } = this.props;
     return (
       <div className="Comments">
-              <form onSubmit={this.postComment}>
-                <input value={newComment} onChange={this.handleChange} id="newComment" required/>
-                <button>post</button>
-        <table>
-          {comments.map(comment => (
-            <tbody key={comment.comment_id}>
-              <Fade bottom opposite>
-                <tr>
-                  <td>{comment.body}</td>
-                </tr>
-                <tr>
-                  <td style={{ textAlign: "right", fontWeight: "700" }}>
-                    comment posted by {comment.author || comment.created_by} at{" "}
-                    {Date(comment.created_at)}
-                  </td>
-                </tr>
-                <tr>
-                  <td>
-                    <Votes
-                      id={comment.comment_id}
-                      votes={comment.votes}
-                      location={"comment"}
+        <form onSubmit={this.postComment}>
+          <input
+            value={newComment}
+            onChange={this.handleChange}
+            id="newComment"
+            required
+          />
+          <button>post</button>
+          <table>
+            {comments.map(comment => (
+              <tbody key={comment.comment_id}>
+                <Fade bottom opposite>
+                  <tr>
+                    <td>{comment.body}</td>
+                  </tr>
+                  <tr>
+                    <td style={{ textAlign: "right", fontWeight: "700" }}>
+                      comment posted by {comment.created_by || comment.author}
+                      at {Date(comment.created_at)}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      <Votes
+                        id={comment.comment_id}
+                        votes={comment.votes}
+                        location={"comment"}
                       />
-                  </td>
-                </tr>
-              </Fade>
-            </tbody>
-          ))}
-        </table>
-          </form>
+                      {(comment.created_by === user ||
+                        comment.author === user) && (
+                        <button onClick={() => this.removeComment(comment.comment_id)}>delete</button>
+                      )}
+                    </td>
+                  </tr>
+                </Fade>
+              </tbody>
+            ))}
+          </table>
+        </form>
       </div>
     );
   }
@@ -63,15 +73,15 @@ class Comments extends Component {
 
   postComment = e => {
     e.preventDefault();
-    const { articleId, user } = this.props
-    const newCommentObj = { username: user, body: this.state.newComment}
+    const { articleId, user } = this.props;
+    const newCommentObj = { username: user, body: this.state.newComment };
     api.postComment(articleId, newCommentObj).then(postedComment => {
       this.setState(state => ({
         comments: postedComment.concat(state.comments),
-        newComment: ''
+        newComment: ""
       }));
-    })
-  }
+    });
+  };
 
   handleChange = e => {
     const { id, value } = e.target;
@@ -80,14 +90,17 @@ class Comments extends Component {
     });
   };
 
-  deleteComment = () => {
-
+  removeComment = id => {
+    api.deleteComment(id);
+    this.setState(state => ({
+      comments: state.comments.filter(comment => comment.comment_id !== id)
+    }))
   }
 }
 
 Comments.propTypes = {
   articleId: PT.number.isRequired,
   user: PT.string
-}
+};
 
 export default Comments;

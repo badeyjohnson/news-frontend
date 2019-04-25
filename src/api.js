@@ -23,6 +23,10 @@ export const postComment = async (endpoint, newComment) => {
   return data.comment;
 };
 
+export const deleteComment = endpoint => {
+  axios.delete(`${BASE_URL}comments/${endpoint}`);
+};
+
 export const getUser = async username => {
   const { data } = await axios.get(`${BASE_URL}/users/${username}`);
   return data.user;

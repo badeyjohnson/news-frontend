@@ -12,7 +12,6 @@ class SingleArticle extends Component {
   render() {
     const { article } = this.state;
     const { user } = this.props;
-    console.log(user)
     return (
       <div>
         <div className="Article">
