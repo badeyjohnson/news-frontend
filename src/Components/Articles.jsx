@@ -52,7 +52,7 @@ class Articles extends Component {
       })
     }).catch(() => {
       const { navigate } = this.props
-      navigate("/err/404", { replace: true, state: {msg : `couldn't find articles`} })})
+      navigate("/err/404/articles", { replace: true, state: {msg : `couldn't find articles`} })})
   };
 
   sortArticles = query => {

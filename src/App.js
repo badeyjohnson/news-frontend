@@ -27,22 +27,22 @@ class App extends Component {
           <Logout logout={this.logout} user={user}/>
           <Nav topics={topics} />
           <Router className="Articles">
-            <Articles path="/" getAll={true} firstArticle={this.firstArticle} />
+            <Articles path="/" getAll={true} firstArticle={this.firstArticle} default/>
             <Articles path="/:topic" firstArticle={this.firstArticle} />
             <Articles
               path="/articles/:article_id"
               firstArticle={this.firstArticle}
             />
-            <NotFound path="/err/404" default/>
+            <NotFound path="/err/404/articles"/>
           </Router>
           <Router >
             <SingleArticle
               path="/articles/:article_id"
               user={user}
             />
-            <NotFound path="/err/404" default/>
+            <NotFound path="/err/404/article"/>
             <SingleArticle path="/:topic" firstArticleId={firstArticleId} user={user}/>
-            <SingleArticle path="/" firstArticleId={firstArticleId} user={user}/>
+            <SingleArticle path="/" firstArticleId={firstArticleId} user={user} default/>
           </Router>
           <Footer />
         </Auth>

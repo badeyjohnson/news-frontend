@@ -37,7 +37,7 @@ class SingleArticle extends Component {
   }
 
   componentDidMount() {
-    this.fetchOneArticle(this.props.firstArticleId);
+    this.props.article_id ? this.fetchOneArticle(this.props.article_id) : this.fetchOneArticle(this.props.firstArticleId);
   }
 
   componentDidUpdate(prevProps) {
@@ -57,7 +57,7 @@ class SingleArticle extends Component {
       })
     }).catch(() => {
       const { navigate } = this.props
-      navigate("/err/404", { replace: true, state: {msg : `Article not found`} })})
+      navigate("/err/404/article", { replace: true, state: {msg : `Article not found`} })})
   };
 }
 
