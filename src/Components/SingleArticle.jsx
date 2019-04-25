@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PT from "prop-types";
 import Comments from "./Comments";
 import Votes from "./Votes";
+import './css/Articles.css'
 import * as api from "../api";
 
 class SingleArticle extends Component {
@@ -15,14 +16,14 @@ class SingleArticle extends Component {
     return (
       <div>
         <div className="Article">
-          <div className="theArticle">
-            <h1>{article.title}</h1>
+            <h1 className="theArticleHead">{article.title}</h1>
+            <div className="theArticle">
             <article>{article.body}</article>
             <p style={{ fontWeight: "700" }}>
               posted by {article.author} at {Date(article.created_at)}
             </p>
             <Votes
-              id={article.article_id}
+              id={article.article_id || 0}
               votes={article.votes || 0}
               location={"article"}
             />
@@ -49,11 +50,14 @@ class SingleArticle extends Component {
       this.fetchOneArticle(article_id);
   }
 
-  fetchOneArticle = async id => {
-    const article = await api.getSingle(id);
-    this.setState({
-      article
-    });
+  fetchOneArticle = id => {
+    api.getSingle(id).then(article => {
+      this.setState({
+        article
+      })
+    }).catch(() => {
+      const { navigate } = this.props
+      navigate("/err/404", { replace: true, state: {msg : `Article not found`} })})
   };
 }
 

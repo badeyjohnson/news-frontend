@@ -24,7 +24,7 @@ class App extends Component {
       <div className="App">
         <Header />
         <Auth user={user} login={this.login}>
-          <Logout className="Logout" logout={this.logout} user={user}/>
+          <Logout logout={this.logout} user={user}/>
           <Nav topics={topics} />
           <Router className="Articles">
             <Articles path="/" getAll={true} firstArticle={this.firstArticle} />
@@ -33,15 +33,16 @@ class App extends Component {
               path="/articles/:article_id"
               firstArticle={this.firstArticle}
             />
-            <NotFound path="/404" default/>
+            <NotFound path="/err/404" default/>
           </Router>
-          <Router className="Article">
+          <Router >
             <SingleArticle
               path="/articles/:article_id"
-              firstArticleId={firstArticleId}
               user={user}
             />
-            <SingleArticle path="/*" firstArticleId={firstArticleId} user={user}/>
+            <NotFound path="/err/404" default/>
+            <SingleArticle path="/:topic" firstArticleId={firstArticleId} user={user}/>
+            <SingleArticle path="/" firstArticleId={firstArticleId} user={user}/>
           </Router>
           <Footer />
         </Auth>

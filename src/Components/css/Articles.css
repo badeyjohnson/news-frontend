@@ -21,19 +21,29 @@
   grid-area: article;
   display: grid;
   height: 80vh;
-  margin: 1vh;
+  margin: 0.5vh;
   grid-template-areas:
+    "thearticlehead comments"
     "thearticle comments";
+  grid-template-columns: 45vw 23vw;
+  grid-template-rows: 1fr 9fr
 }
 
 .theArticle {
   grid-area: thearticle;
-  justify-content: center;
-  height: 79vh;
+  display: flex;
+  align-content: flex-start;
+  justify-content: flex-start;
   width: 45vw;
-  align-content: center;
   flex-wrap: wrap;
   overflow-y: scroll;
+}
+
+.theArticlehead {
+  grid-area: thearticlehead;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 10%;
 }
 
 .Comments {

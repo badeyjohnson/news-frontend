@@ -2,7 +2,7 @@ import React from "react";
 
 const componentName = ({ logout, user }) => {
   return (
-    <div>
+    <div className="Logout" >
       <button onClick={() => logout()}>Logout</button>
       <p>{user}</p>
     </div>

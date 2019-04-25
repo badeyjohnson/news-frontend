@@ -38,7 +38,7 @@ class Comments extends Component {
                   <tr>
                     <td>
                       <Votes
-                        id={comment.comment_id}
+                        id={comment.comment_id || 0}
                         votes={comment.votes}
                         location={"comment"}
                       />
