@@ -29,7 +29,7 @@ class App extends Component {
           <Logout logout={this.logout} user={user} />
           <Nav topics={topics} />
           <div className="main-body">
-            <Router >
+            <Router>
               <Articles
                 path="/"
                 getAll={true}
@@ -37,10 +37,6 @@ class App extends Component {
                 default
               />
               <Articles path="/:topic" firstArticle={this.firstArticle} />
-              <Articles
-                path="/articles/:article_id"
-                firstArticle={this.firstArticle}
-              />
               <NotFound path="/err/404/articles" />
               <SingleArticle path="/articles/:article_id" user={user} />
               <NotFound path="/err/404/article" />
@@ -48,12 +44,6 @@ class App extends Component {
                 path="/:topic"
                 firstArticleId={firstArticleId}
                 user={user}
-              />
-              <SingleArticle
-                path="/"
-                firstArticleId={firstArticleId}
-                user={user}
-                default
               />
             </Router>
           </div>

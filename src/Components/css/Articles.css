@@ -1,12 +1,6 @@
 .main-body {
   grid-area: main-body;
   display: grid;
-  grid-template-areas: "articles";
-  grid-template-columns: 1fr;
-}
-
-.all-articles {
-  grid-area: articles;
   height: 100%;
   overflow: hidden
 }
@@ -14,15 +8,13 @@
 .fixed_header {
   table-layout: fixed;
   width: 100%;
-  border-spacing: 2.5vw 0;
-  
+  border-spacing: 1vw 0;
 }
 
 .fixed_header tbody {
   display: block;
   overflow: auto;
   height: 65vh;
-  padding: 0vw 0vw 0vw 8vw;
 }
 
 .fixed_header thead tr {
@@ -30,19 +22,18 @@
 }
 
 .fixed_header thead {
-  color: #fff;
+  color: rgb(106, 102, 133);
 }
 
 .fixed_header th {
   text-align: left;
-  padding: 0vw 0vw 0vw 8vw;
 }
 
 .article-link {
   text-decoration: none;
   color: blue;
   display: inline-block;
-  width: 90%;
+  width: 50vw;
   margin: 1vh;
   padding: 0.5em;
   border: 1px solid black;
@@ -55,10 +46,11 @@
 }
 
 .article {
-  grid-area: article;
+  grid-area: main-body;
   display: grid;
+  height: 65vh;
   grid-template-areas:
-    "thearticlehead thearticlehead"
+    "thearticlehead comments"
     "thearticle comments";
   grid-template-columns: 2fr 1fr;
   grid-template-rows: 1fr 9fr;
@@ -67,6 +59,7 @@
 .the-article {
   grid-area: thearticle;
   display: flex;
+  height: 65vh;
   align-content: flex-start;
   flex-wrap: wrap;
   overflow-y: scroll;
@@ -74,14 +67,10 @@
 
 .the-article-head {
   grid-area: thearticlehead;
-  display: flex;
-  align-items: flex-start;
-  justify-content: flex-start;
+  margin: 1em;
 }
 
 .comments {
   grid-area: comments;
-  display: flex;
-  flex-direction: column;
-  overflow-y: scroll;
+  height: 65vh;
 }

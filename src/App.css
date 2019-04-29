@@ -9,10 +9,9 @@ body {
   grid-template-areas:
     "header header cube-scene"
     "logout nav nav"
-    "main-body main-body main-body"
+    ". main-body ."
     "foot foot foot";
   grid-template-columns: 1fr 8fr 1fr;
   grid-template-rows: 1fr 1fr 8fr 0.5fr;
   background-color: rgb(141, 141, 141);
 }
-

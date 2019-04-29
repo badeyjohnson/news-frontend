@@ -12,41 +12,46 @@ class Articles extends Component {
   render() {
     const { articles } = this.state;
     return (
-      <div className="all-articles">
+      <div>
         <table className="fixed_header">
-          <thead >
+          <thead>
             <th>
-            <button className="Logout" onClick={() => this.sortArticles("votes")}>
-              Top votes
-            </button>
-            <button className="Logout" onClick={() => this.sortArticles("comment_count")}>
-              Most comments
-            </button>
-            <button className="Logout" onClick={() => this.sortArticles("created_at")}>
-              Latest
-            </button>
+              <button
+                className="Logout"
+                onClick={() => this.sortArticles("votes")}
+              >
+                Top votes
+              </button>
+              <button
+                className="Logout"
+                onClick={() => this.sortArticles("comment_count")}
+              >
+                Most comments
+              </button>
+              <button
+                className="Logout"
+                onClick={() => this.sortArticles("created_at")}
+              >
+                Latest
+              </button>
             </th>
           </thead>
 
-          <tbody >
+          <tbody>
             {articles.map(article => (
               <tr>
-                <td>
-                {article.votes}
-                </td>
+                <td>{article.votes}</td>
                 <td className="article-link" key={`${article.article_id}`}>
-                  <Link
-                    to={`/articles/${article.article_id}`}
-                  >
+                  <Link to={`/articles/${article.article_id}`}>
                     {article.title}
-                  </Link><br/>
+                  </Link>
+                  <br />
                   {Date(article.created_at)}
                 </td>
                 <td className="comment-number">
                   {article.comment_count} comments
                 </td>
               </tr>
-
             ))}
           </tbody>
         </table>

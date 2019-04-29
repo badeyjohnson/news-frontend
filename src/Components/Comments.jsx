@@ -14,32 +14,25 @@ class Comments extends Component {
     const { comments, newComment } = this.state;
     const { user } = this.props;
     return (
-      <div className="comments">
-        <form onSubmit={this.postComment}>
-        <h2>post a new comment</h2>
-          <input
-            value={newComment}
-            onChange={this.handleChange}
-            id="newComment"
-          />
-          <button>post</button>
-          </form>
-          <div >
-          <table>
+        <form className="comments" onSubmit={this.postComment}>
+          <table className="fixed_header">
+            <thead>
+              <th>
+                post a new comment
+                <input
+                  value={newComment}
+                  onChange={this.handleChange}
+                  id="newComment"
+                />
+                <button>post</button>
+              </th>
+            </thead>
+            <tbody>
             {comments.map(comment => (
-              <tbody key={comment.comment_id}>
                 <Fade bottom opposite>
-                  <tr>
+                  <tr key={comment.comment_id}>
                     <td>{comment.body}</td>
-                  </tr>
-                  <tr>
-                    <td style={{ textAlign: "right", fontWeight: "700" }}>
-                      comment posted by {comment.created_by || comment.author}{' '}
-                      at {Date(comment.created_at)}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>
+                    <td rowspan="2">
                       <Votes
                         id={comment.comment_id || 0}
                         votes={comment.votes}
@@ -47,16 +40,25 @@ class Comments extends Component {
                       />
                       {(comment.created_by === user ||
                         comment.author === user) && (
-                        <button onClick={() => this.removeComment(comment.comment_id)}>delete</button>
+                        <button
+                          onClick={() => this.removeComment(comment.comment_id)}
+                        >
+                          delete
+                        </button>
                       )}
                     </td>
-                  </tr>
+                    </tr>
+                    <tr>
+                    <td>
+                      comment posted by {comment.created_by || comment.author}{" "}
+                      at {Date(comment.created_at)}
+                    </td>
+                    </tr>
                 </Fade>
-              </tbody>
             ))}
+            </tbody>
           </table>
-          </div>
-      </div>
+        </form>
     );
   }
 
@@ -76,7 +78,7 @@ class Comments extends Component {
   postComment = e => {
     e.preventDefault();
     const { articleId, user } = this.props;
-    const { newComment } = this.state
+    const { newComment } = this.state;
     if (newComment) {
       const newCommentObj = { username: user, body: newComment };
       api.postComment(articleId, newCommentObj).then(postedComment => {
@@ -99,8 +101,8 @@ class Comments extends Component {
     api.deleteComment(id);
     this.setState(state => ({
       comments: state.comments.filter(comment => comment.comment_id !== id)
-    }))
-  }
+    }));
+  };
 }
 
 Comments.propTypes = {
