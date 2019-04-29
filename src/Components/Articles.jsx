@@ -12,23 +12,44 @@ class Articles extends Component {
   render() {
     const { articles } = this.state;
     return (
-      <div>
-        {articles.map(article => (
-          <div key={`${article.article_id}`}>
-            <Link to={`/articles/${article.article_id}`} className="Link">
-              {article.title}
-            </Link>
-          </div>
-        ))}
-        <button onClick={() => this.sortArticles("votes")}>
-          sort by votes
-        </button>
-        <button onClick={() => this.sortArticles("comment_count")}>
-          sort by num comments
-        </button>
-        <button onClick={() => this.sortArticles("created_at")}>
-          sort by date created
-        </button>
+      <div className="all-articles">
+        <table className="fixed_header">
+          <thead >
+            <th>
+            <button className="Logout" onClick={() => this.sortArticles("votes")}>
+              Top votes
+            </button>
+            <button className="Logout" onClick={() => this.sortArticles("comment_count")}>
+              Most comments
+            </button>
+            <button className="Logout" onClick={() => this.sortArticles("created_at")}>
+              Latest
+            </button>
+            </th>
+          </thead>
+
+          <tbody >
+            {articles.map(article => (
+              <tr>
+                <td>
+                {article.votes}
+                </td>
+                <td className="article-link" key={`${article.article_id}`}>
+                  <Link
+                    to={`/articles/${article.article_id}`}
+                  >
+                    {article.title}
+                  </Link><br/>
+                  {Date(article.created_at)}
+                </td>
+                <td className="comment-number">
+                  {article.comment_count} comments
+                </td>
+              </tr>
+
+            ))}
+          </tbody>
+        </table>
       </div>
     );
   }
@@ -45,14 +66,21 @@ class Articles extends Component {
 
   fetchArticles = () => {
     const { topic, firstArticle } = this.props;
-    api.getAll("articles", topic).then(articles => {
-      firstArticle(articles[0].article_id);
-      this.setState({
-        articles
+    api
+      .getAll("articles", topic)
+      .then(articles => {
+        firstArticle(articles[0].article_id);
+        this.setState({
+          articles
+        });
       })
-    }).catch(() => {
-      const { navigate } = this.props
-      navigate("/err/404/articles", { replace: true, state: {msg : `couldn't find articles`} })})
+      .catch(() => {
+        const { navigate } = this.props;
+        navigate("/err/404/articles", {
+          replace: true,
+          state: { msg: `couldn't find articles` }
+        });
+      });
   };
 
   sortArticles = query => {

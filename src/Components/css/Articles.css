@@ -1,35 +1,70 @@
-.Articles {
+.main-body {
+  grid-area: main-body;
+  display: grid;
+  grid-template-areas: "articles";
+  grid-template-columns: 1fr;
+}
+
+.all-articles {
   grid-area: articles;
-  background-color:rgb(215, 216, 219);
-  justify-content: center;
-  align-items: center;
-  margin: 1vh;
-  height: 80vh;
-  text-align: center;
-  display: flex;
-  flex-wrap: wrap;
-  overflow-y: scroll;
-  border-radius: 1em;
+  height: 100%;
+  overflow: hidden
 }
 
-.Link {
+.fixed_header {
+  table-layout: fixed;
+  width: 100%;
+  border-spacing: 2.5vw 0;
+  
+}
+
+.fixed_header tbody {
+  display: block;
+  overflow: auto;
+  height: 65vh;
+  padding: 0vw 0vw 0vw 8vw;
+}
+
+.fixed_header thead tr {
+  display: block;
+}
+
+.fixed_header thead {
+  color: #fff;
+}
+
+.fixed_header th {
+  text-align: left;
+  padding: 0vw 0vw 0vw 8vw;
+}
+
+.article-link {
   text-decoration: none;
-  color: blue
+  color: blue;
+  display: inline-block;
+  width: 90%;
+  margin: 1vh;
+  padding: 0.5em;
+  border: 1px solid black;
+  border-radius: 0.5em;
 }
 
-.Article {
+.comment-number {
+  color: blue;
+  padding: 0vw 0vw 0vw 3vw;
+}
+
+.article {
   grid-area: article;
   display: grid;
-  height: 80vh;
-  margin: 0.5vh;
   grid-template-areas:
     "thearticlehead thearticlehead"
     "thearticle comments";
-  grid-template-columns: 45vw 23vw;
-  grid-template-rows: 1fr 9fr
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 9fr;
 }
 
-.theArticle {
+.the-article {
   grid-area: thearticle;
   display: flex;
   align-content: flex-start;
@@ -37,19 +72,16 @@
   overflow-y: scroll;
 }
 
-.theArticleHead {
+.the-article-head {
   grid-area: thearticlehead;
-  width: 100%;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
 }
 
-.Comments {
+.comments {
   grid-area: comments;
-  display: grid;
   display: flex;
   flex-direction: column;
   overflow-y: scroll;
-  margin: 0 0 0 0.5vw;
 }

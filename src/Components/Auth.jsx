@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import PT from "prop-types";
+
 import "./css/Auth.css";
 
 class Auth extends Component {
   state = {
-    username: "jessjelly"
+    username: "",
   };
   render() {
     const { username } = this.state;
@@ -12,9 +13,11 @@ class Auth extends Component {
     return user ? (
       children
     ) : (
-      <form onSubmit={this.handleSubmit} className="Login">
-        <input value={username} onChange={this.handleChange} id="username" required/>
+
+      <form onSubmit={this.handleSubmit} >
+        <input placeholder={"jessjelly"} value={username} onChange={this.handleChange} id="username" required/>
         <button type="submit">Login</button>
+        
       </form>
     );
   }

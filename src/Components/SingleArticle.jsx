@@ -15,9 +15,9 @@ class SingleArticle extends Component {
     const { user } = this.props;
     return (
       <div>
-        <div className="Article">
-            <h1 className="theArticleHead">{article.title}</h1>
-            <div className="theArticle">
+        <div >
+            <h1 className="the-article-head">{article.title}</h1>
+            <div className="the-article">
             <article>{article.body}</article>
             <p style={{ fontWeight: "700" }}>
               posted by {article.author} at {Date(article.created_at)}

@@ -14,7 +14,7 @@ class Comments extends Component {
     const { comments, newComment } = this.state;
     const { user } = this.props;
     return (
-      <div className="Comments">
+      <div className="comments">
         <form onSubmit={this.postComment}>
         <h2>post a new comment</h2>
           <input
@@ -34,7 +34,7 @@ class Comments extends Component {
                   </tr>
                   <tr>
                     <td style={{ textAlign: "right", fontWeight: "700" }}>
-                      comment posted by {comment.created_by || comment.author}
+                      comment posted by {comment.created_by || comment.author}{' '}
                       at {Date(comment.created_at)}
                     </td>
                   </tr>
