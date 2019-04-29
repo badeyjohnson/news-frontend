@@ -6,7 +6,8 @@ import "./css/Articles.css";
 
 class Articles extends Component {
   state = {
-    articles: []
+    articles: [],
+    hoveredArticle: false
   };
 
   render() {
@@ -42,11 +43,13 @@ class Articles extends Component {
               <tr>
                 <td>{article.votes}</td>
                 <td className="article-link" key={`${article.article_id}`}>
-                  <Link to={`/articles/${article.article_id}`}>
+                  <Link to={`/articles/${article.article_id}`}
+                  id={article.article_id}
+                  onMouseEnter={this.MouseHover}
+                  onMouseLeave={this.MouseLeave}>
                     {article.title}
                   </Link>
-                  <br />
-                  {Date(article.created_at)}
+                  <p className={article.article_id == this.state.hoveredArticle ? "show" : "hide"}>by {article.author}</p>
                 </td>
                 <td className="comment-number">
                   {article.comment_count} comments
@@ -94,7 +97,16 @@ class Articles extends Component {
       articles: articles.concat().sort((a, b) => b[query] - a[query])
     });
   };
+
+  MouseHover = event => {
+    this.setState({hoveredArticle: event.target.id})
+  }
+
+  MouseLeave = () => {
+    this.setState({hoveredArticle: false})
+  }
 }
+
 
 Articles.propTypes = {
   topic: PT.arrayOf(PT.string),

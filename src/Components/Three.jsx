@@ -73,7 +73,6 @@ class ThreeScene extends Component {
   };
 
   setWindowSize = () => {
-    console.log('resizing')
     this.setState({
       width: this.mount.clientWidth,
       height: this.mount.clientHeight

@@ -17,7 +17,7 @@ class Comments extends Component {
         <form className="comments" onSubmit={this.postComment}>
           <table className="fixed_header">
             <thead>
-              <th>
+              <th className='comment-post'>
                 post a new comment
                 <input
                   value={newComment}
@@ -30,8 +30,8 @@ class Comments extends Component {
             <tbody>
             {comments.map(comment => (
                 <Fade bottom opposite>
-                  <tr key={comment.comment_id}>
-                    <td>{comment.body}</td>
+                  <tr key={comment.comment_id} >
+                    <td >{comment.body}</td>
                     <td rowspan="2">
                       <Votes
                         id={comment.comment_id || 0}
@@ -49,9 +49,9 @@ class Comments extends Component {
                     </td>
                     </tr>
                     <tr>
-                    <td>
+                    <td className="comment-body">
                       comment posted by {comment.created_by || comment.author}{" "}
-                      at {Date(comment.created_at)}
+                      at {comment.created_at}
                     </td>
                     </tr>
                 </Fade>
